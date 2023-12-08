@@ -53,22 +53,25 @@ plt.show()
 ```
 ### Find the edges in the image using canny detector and display
 ```
-lines=cv2.HoughLinesP(edge,1,np.pi/180, threshold=80, minLineLength=50,maxLineGap=250)
+edge = cv2.Canny(img,100,200)
+plt.imshow(edge,cmap='gray')
+plt.title('Edge Image')
+plt.xticks([])
+plt.yticks([])
+plt.show()
 
 ```
 
 ### Detect points that form a line using HoughLinesP
 ```
-for line in lines:
-    x1,y1,x2,y2 = line[0]
-    cv2.line(edge,(x1,y1),(x2,y2),(255,0,0),3)
-plt.imshow(edge)
-plt.axis('off')
-plt.show()
+lines=cv2.HoughLinesP(edge,1,np.pi/180, threshold=80, minLineLength=50,maxLineGap=250)
 ```
 
 ### Draw lines on the image and display
 ```
+for line in lines:
+    x1,y1,x2,y2 = line[0]
+    cv2.line(edge,(x1,y1),(x2,y2),(255,0,0),3)
 plt.imshow(edge)
 plt.axis('off')
 plt.show()
